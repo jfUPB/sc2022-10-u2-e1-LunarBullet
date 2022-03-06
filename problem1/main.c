@@ -63,7 +63,29 @@ void getArray(struct array *parr)
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
+    int arraySize = 0;
+    int arrayElements[60];
+
+    //analizamos y guardamos si hay valores en comun
+    for (size_t i = 0; i < 60; i++)
+    {
+        for (size_t j = 0; j < 60; j++)
+        {
+            if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
+            {                                       //de manera que asi sabremos si hay elementos en comun
+                arraySize++;
+                arrayElements[i]=arrIn1->pdata[i];
+            }
+        }
+    }
+
+    //asignamos datos
+    for (size_t i = 0; i < arraySize; i++)
+    {
+        /* code */
+    }
     
+
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
