@@ -36,17 +36,18 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    char numbersToRead[30];
+    char numbersToRead[100];
     int arraySize = 0;
 
-    fgets(numbersToRead, 30, stdin); // lee datos 
+    fgets(numbersToRead, 100, stdin); // lee datos 
+    
     numbersToRead[strlen(numbersToRead) -1 ] = 0; //encuentra el tamano de la chain de chars del terminal
     sscanf(numbersToRead,"%d", &arraySize); // guarda el tamano del array
     parr->pdata = malloc(sizeof(int)*arraySize);
 
     //asigno los valores
     parr->size=arraySize;
-    
+
     for (int i = 0; i < arraySize; i++)
     {
         sscanf(numbersToRead," %d ", parr->pdata+i);
