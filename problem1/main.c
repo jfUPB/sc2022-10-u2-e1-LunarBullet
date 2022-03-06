@@ -63,7 +63,7 @@ void getArray(struct array *parr)
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    int arraySize = 0;
+    int arraySize;
     int arrayElements[60];
 
     //analizamos y guardamos si hay valores en comun
@@ -78,7 +78,7 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
             }
         }
     }
-    
+
     //asignamos datos
     arrOut->size=arraySize;
     arrOut->pdata = malloc(sizeof(int)*arraySize);
