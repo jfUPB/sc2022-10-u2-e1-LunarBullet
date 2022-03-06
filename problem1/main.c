@@ -78,11 +78,14 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
             }
         }
     }
-
+    
     //asignamos datos
+    arrOut->size=arraySize;
+    arrOut->pdata = malloc(sizeof(int)*arraySize);
+
     for (size_t i = 0; i < arraySize; i++)
     {
-        /* code */
+       arrOut->pdata[i]=arrayElements[i];
     }
     
 
