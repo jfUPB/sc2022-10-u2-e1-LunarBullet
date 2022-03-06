@@ -36,7 +36,19 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    
+    int dynamicNumber = 0;
+
+    scanf("%i", &dynamicNumber);
+
+    int arraySize = dynamicNumber;
+    parr->size = arraySize;
+
+    for (size_t i = 0; i < arraySize; i++)
+    {
+       scanf("%i", &dynamicNumber);
+       parr->pdata[i] = dynamicNumber;
+    } 
+
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
