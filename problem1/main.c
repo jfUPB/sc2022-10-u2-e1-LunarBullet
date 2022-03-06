@@ -36,19 +36,23 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    int dynamicNumber = 0;
+    char numbersToRead[30];
+    int arraySize = 0;
 
-    scanf("%i", &dynamicNumber);
+    fgets(numbersToRead, 30, stdin); // lee datos 
+    numbersToRead[strlen(numbersToRead) -1 ] = 0; //encuentra el tamano de la chain de chars del terminal
+    sscanf(numbersToRead,"%d", &arraySize); // guarda el tamano del array
+    parr->pdata = malloc(sizeof(int)*arraySize);
 
-    int arraySize = dynamicNumber;
-    parr->size = arraySize;
-
-    for (size_t i = 0; i < arraySize; i++)
+    //asigno los valores
+    parr->size=arraySize;
+    
+    for (int i = 0; i < arraySize; i++)
     {
-       scanf("%i", &dynamicNumber);
-       parr->pdata[i] = dynamicNumber;
-    } 
-
+        sscanf(numbersToRead," %d ", parr->pdata+i);
+    }
+    
+    
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
