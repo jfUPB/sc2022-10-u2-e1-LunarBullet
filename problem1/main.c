@@ -83,8 +83,7 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
             {                                       //de manera que asi sabremos si hay elementos en comun
                 repeatedChecker=arrIn1->pdata[i];
                 arraySize++;
-
-                arrayElements[j]=arrIn1->pdata[i];    
+                arrayElements[i]=arrIn1->pdata[i];    
 
             }
         }
