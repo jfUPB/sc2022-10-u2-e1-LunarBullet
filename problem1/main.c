@@ -84,47 +84,47 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
                 repeatedChecker=arrIn1->pdata[i];
                 arraySize++;
 
-              for (int m = 0; m < arraySize; m++)
-              {
-                  if (arrayElements[m]!=repeatedChecker)
-                  {
-                      arrayElements[j]=arrIn1->pdata[i];    
-                      arraySizeFinal++;
-                  }
-                  else break;
-              }
+            //   for (int m = 0; m < arraySize; m++)
+            //   {
+            //       if (arrayElements[m]!=repeatedChecker)
+            //       {
+            //           arrayElements[j]=arrIn1->pdata[i];    
+            //           arraySizeFinal++;
+            //       }
+                  
+            //   }
             }
         }
     }
 
-//     //remove duplicates logic
-//    for ( a = 0; a < arraySize; a ++)  
-//     {  
-//         for ( b = a + 1; b < arraySize; b++)  
-//         {  
-//             // use if statement to check duplicate element  
-//             if ( arrayElements[a] == arrayElements[b])  
-//             {  
-//                 // delete the current position of the duplicate element  
-//                 for ( c = b; c < arraySize - 1; c++)  
-//                 {  
-//                     arrayElements[c] = arrayElements [c + 1];  
-//                 }  
-//                 // decrease the size of array after removing duplicate element  
-//                 arraySize--;  
+    //remove duplicates logic
+   for ( a = 0; a < arraySize; a ++)  
+    {  
+        for ( b = a + 1; b < arraySize; b++)  
+        {  
+            // use if statement to check duplicate element  
+            if ( arrayElements[a] == arrayElements[b])  
+            {  
+                // delete the current position of the duplicate element  
+                for ( c = b; c < arraySize - 1; c++)  
+                {  
+                    arrayElements[c] = arrayElements [c + 1];  
+                }  
+                // decrease the size of array after removing duplicate element  
+                arraySize--;  
                   
-//             // if the position of the elements is changes, don't increase the index j  
-//                 b--;      
-//             }  
-//         }  
-//     }  
+            // if the position of the elements is changes, don't increase the index j  
+                b--;      
+            }  
+        }  
+    }  
    
 
     //we assign then the proccesed data
-    arrOut->size = arraySizeFinal;
-    arrOut->pdata = malloc(sizeof(int)*arraySizeFinal);
+    arrOut->size = arraySize;
+    arrOut->pdata = malloc(sizeof(int)*arraySize);
 
-    for (int i = 0; i < arraySizeFinal; i++)
+    for (int i = 0; i < arraySize; i++)
     {
        arrOut->pdata[i]=arrayElements[i];
     }
