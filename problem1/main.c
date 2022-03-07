@@ -63,18 +63,18 @@ void getArray(struct array *parr)
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    int arraySize;
+    int arraySize = 0;
     int arrayElements[60];
 
     //analizamos y guardamos si hay valores en comun
-    for (size_t i = 0; i < 60; i++)
+    for (size_t i = 0; i < arrIn1->size; i++) //recorremos array1
     {
-        for (size_t j = 0; j < 60; j++)
+        for (size_t j = 0; j < arrIn2->size; j++) //recorremos arr2 entero por cada valor de arr1
         {
             if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
             {                                       //de manera que asi sabremos si hay elementos en comun
                 arraySize++;
-                arrayElements[i]=arrIn1->pdata[i];
+                arrayElements[j]=arrIn1->pdata[j];
             }
         }
     }
@@ -83,7 +83,7 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     arrOut->size=arraySize;
     arrOut->pdata = malloc(sizeof(int)*arraySize);
 
-    for (size_t i = 0; i < arraySize; i++)
+    for (int i = 0; i < arraySize; i++)
     {
        arrOut->pdata[i]=arrayElements[i];
     }
