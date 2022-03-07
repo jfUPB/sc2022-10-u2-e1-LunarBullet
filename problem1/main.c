@@ -74,7 +74,7 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
             if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
             {                                       //de manera que asi sabremos si hay elementos en comun
                 arraySize++;
-                arrayElements[j]=arrIn1->pdata[j];
+                arrayElements[i]=arrIn1->pdata[i];
             }
         }
     }
