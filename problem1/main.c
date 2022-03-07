@@ -66,20 +66,51 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     int arraySize = 0;
     int arrayElements[60];
 
-    //analizamos y guardamos si hay valores en comun
+    int repeatedChecker;
+
+    int repeatedCounter=0;
+
+    int a, b, c; //for removing repeated/duplicates
+
+
+    //analizamos y guardamos si hay valores en comun (nested loop)
     for (size_t i = 0; i < arrIn1->size; i++) //recorremos array1
     {
         for (size_t j = 0; j < arrIn2->size; j++) //recorremos arr2 entero por cada valor de arr1
         {
             if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
             {                                       //de manera que asi sabremos si hay elementos en comun
+                repeatedChecker=arrIn1->pdata[j];
                 arraySize++;
-                arrayElements[i]=arrIn1->pdata[i];
+                arrayElements[i]=arrIn1->pdata[i];    //this will give us the raw duplicated numbers       
             }
         }
     }
 
-    //asignamos datos
+    //remove duplicates logic
+   for ( a = 0; a < arraySize; a ++)  
+    {  
+        for ( b = a + 1; b < arraySize; b++)  
+        {  
+            // use if statement to check duplicate element  
+            if ( arrayElements[a] == arrayElements[b])  
+            {  
+                // delete the current position of the duplicate element  
+                for ( c = b; c < arraySize - 1; c++)  
+                {  
+                    arrayElements[c] = arrayElements [c + 1];  
+                }  
+                // decrease the size of array after removing duplicate element  
+                arraySize--;  
+                  
+            // if the position of the elements is changes, don't increase the index j  
+                b--;      
+            }  
+        }  
+    }  
+   
+
+    //we assign then the proccesed data
     arrOut->size=arraySize;
     arrOut->pdata = malloc(sizeof(int)*arraySize);
 
