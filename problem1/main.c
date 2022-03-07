@@ -64,10 +64,7 @@ void getArray(struct array *parr)
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
     int arraySize = 0;
-    int arraySizeFinal=0;
     int arrayElements[60];
-
-    int repeatedChecker;
 
     int repeatedCounter=0;
 
@@ -81,7 +78,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
         {
             if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
             {                                       //de manera que asi sabremos si hay elementos en comun
-                repeatedChecker=arrIn1->pdata[i];
                 arraySize++;
                 arrayElements[i]=arrIn1->pdata[i];    
 
