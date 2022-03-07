@@ -111,7 +111,8 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
    
 
     //we assign then the proccesed data
-    arrOut->size=arraySize;
+    arrOut->size = malloc(sizeof(int)*arraySize);
+    arrOut->size = arraySize;
     arrOut->pdata = malloc(sizeof(int)*arraySize);
 
     for (int i = 0; i < arraySize; i++)
