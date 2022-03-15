@@ -73,33 +73,25 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
 
     int a, b, c; //for removing repeated/duplicates
 
-
     //analizamos y guardamos si hay valores en comun (nested loop)
-    for (int i = 0; i < arrIn1->size; i++)
+    for (size_t i = 0; i < arrIn1->size; i++)
     {
-        for(int j= 0; j<arrIn2->size; j++)
+        for(size_t j= 0; j<arrIn2->size; j++)
 
             if (*(arrIn1->pdata+i) == *(arrIn2->pdata+j))
             {
-            
                 myBool = False;
-                for (int k = 0; k < arraySize; k++)
+                for (size_t k = 0; k < arraySize; k++)
                 {
-                    if (*(arrayElements + k) == *(arrIn1 -> pdata + i))
-                    {
-                        myBool = True; 
-                    }
+                    if (arrayElements[i] == arrIn1->pdata[i])  myBool = True; 
                 }
 
                 if (myBool = False)
-
                 {
-                    *(arrayElements + arraySize) = *(arrIn1->pdata + i);
+                    arrayElements[arraySize] = arrIn1->pdata[i]; //using [counter] or * and + counter is da same
                     arraySize++;         
                 }
-
                 myBool = False; 
-
             }      
     }
 
