@@ -63,26 +63,44 @@ void getArray(struct array *parr)
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
+    typedef enum { True, False } boolean; //unnecesary but fun
+    boolean myBool = False;
+
     int arraySize = 0;
     int arrayElements[60];
 
-    int repeatedCounter=0;
+    //int temporalCounter=0;
 
     int a, b, c; //for removing repeated/duplicates
 
 
     //analizamos y guardamos si hay valores en comun (nested loop)
-    for (size_t i = 0; i < arrIn1->size; i++) //recorremos array1
+    for (int i = 0; i < arrIn1->size; i++)
     {
-        for (size_t j = 0; j < arrIn2->size; j++) //recorremos arr2 entero por cada valor de arr1
-        {
-            if (arrIn1->pdata[i]==arrIn2->pdata[j]) //por cada elemento i comparamos todos los elementos j
-            {                                       //de manera que asi sabremos si hay elementos en comun
-                arraySize++;
-                arrayElements[i]=arrIn1->pdata[i];    
+        for(int j= 0; j<arrIn2->size; j++)
 
-            }
-        }
+            if (*(arrIn1->pdata+i) == *(arrIn2->pdata+j))
+            {
+            
+                myBool = False;
+                for (int k = 0; k < arraySize; k++)
+                {
+                    if (*(arrayElements + k) == *(arrIn1 -> pdata + i))
+                    {
+                        myBool = True; 
+                    }
+                }
+
+                if (myBool = False)
+
+                {
+                    *(arrayElements + arraySize) = *(arrIn1->pdata + i);
+                    arraySize++;         
+                }
+
+                myBool = False; 
+
+            }      
     }
 
     //remove duplicates logic
@@ -100,21 +118,24 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
                 }  
                 //decrease the size of array after removing duplicate element  
                 arraySize--;  
+                
                   
             //if the position of the elements is changes, don't increase the index j  
                 b--;      
             }  
         }  
     }  
+
+   
    
 
     //we assign then the proccesed data
     arrOut->size = arraySize;
-    arrOut->pdata = malloc(sizeof(int)*arraySize);
+    arrOut->pdata = realloc(arrOut->pdata, sizeof(int)*arraySize);
 
-    for (int i = 0; i < arraySize; i++)
+    for (int x = 0; x < arraySize; x++)
     {
-       arrOut->pdata[i]=arrayElements[i];
+       arrOut->pdata[x]=arrayElements[x];
     }
     
 
