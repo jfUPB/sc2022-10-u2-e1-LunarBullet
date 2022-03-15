@@ -36,12 +36,101 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
+    char numbersToRead[60];
+    int arraySize = 0;
+
+    fgets(numbersToRead, 60, stdin); // lee datos 
+
+    numbersToRead[strlen(numbersToRead) -1 ] = 0; //encuentra el tamano de la chain de chars del terminal
+    sscanf(numbersToRead,"%d", &arraySize); // guarda el tamano del array
+    
+    parr->size=arraySize;
+
+    parr->pdata = malloc(sizeof(int)*arraySize);
+
+    //asigno los valores
+
+    for (int i = 0; i < arraySize; i++)
+    {
+        if(fgets(numbersToRead,60, stdin)!=NULL)
+        {
+            sscanf(numbersToRead," %d ", parr->pdata+i);
+        }
+    }
+    
     
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
+    typedef enum { True, False } boolean; //unnecesary but fun
+    boolean myBool = False;
+
+    int arraySize = 0;
+    int arrayElements[60];
+
+    //int temporalCounter=0;
+
+    int a, b, c; //for removing repeated/duplicates
+
+    //analizamos y guardamos si hay valores en comun (nested loop)
+    for (size_t i = 0; i < arrIn1->size; i++)
+    {
+        for(size_t j= 0; j<arrIn2->size; j++)
+
+            if (*(arrIn1->pdata+i) == *(arrIn2->pdata+j))
+            {
+                myBool = False;
+                for (size_t k = 0; k < arraySize; k++)
+                {
+                    if (arrayElements[i] == arrIn1->pdata[i])  myBool = True; 
+                }
+
+                if (myBool = False)
+                {
+                    arrayElements[arraySize] = arrIn1->pdata[i]; //using [counter] or * and + counter is da same
+                    arraySize++;         
+                }
+                myBool = False; 
+            }      
+    }
+
+    //remove duplicates logic
+   for ( a = 0; a < arraySize; a ++)  
+    {  
+        for ( b = a + 1; b < arraySize; b++)  
+        {  
+            //use if statement to check duplicate element  
+            if ( arrayElements[a] == arrayElements[b])  
+            {  
+                //delete the current position of the duplicate element  
+                for ( c = b; c < arraySize - 1; c++)  
+                {  
+                    arrayElements[c] = arrayElements [c + 1];  
+                }  
+                //decrease the size of array after removing duplicate element  
+                arraySize--;  
+                
+                  
+            //if the position of the elements is changes, don't increase the index j  
+                b--;      
+            }  
+        }  
+    }  
+
+   
+   
+
+    //we assign then the proccesed data
+    arrOut->size = arraySize;
+    arrOut->pdata = realloc(arrOut->pdata, sizeof(int)*arraySize);
+
+    for (int x = 0; x < arraySize; x++)
+    {
+       arrOut->pdata[x]=arrayElements[x];
+    }
     
+
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
